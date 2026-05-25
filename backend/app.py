@@ -25,7 +25,7 @@ def get_db_connection():
         try:
             print(f"🔄 Trying to connect to DB... ({retries} attempts left)")
             conn = mysql.connector.connect(
-                host=os.environ.get('DB_HOST', 'mysql'),  # ← default mysql
+                host=os.environ.get('DB_HOST', 'mysql-service'),  # ← default mysql
                 user=os.environ.get('DB_USER', 'db'),     # ← default db
                 password=os.environ.get('DB_PASSWORD', 'db'),  # ← default db
                 database=os.environ.get('DB_NAME', 'db'),      # ← default db

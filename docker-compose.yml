@@ -28,7 +28,7 @@ services:
 
   backend:
     build: ./backend
-    container_name: flask_backend
+    container_name: project2-backend:latest
     restart: on-failure
     environment:
       DB_HOST: mysql

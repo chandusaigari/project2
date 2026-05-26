@@ -70,15 +70,17 @@ pipeline {
             sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-                # Push backend
-                docker push chandu0303/flask-backend:${IMAGE_TAG}
-                docker tag chandu0303/flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
-                docker push chandu0303/flask-backend:latest
+               docker tag flask-backend:${IMAGE_TAG} chandu0303/flask-backend:${IMAGE_TAG}
+    docker tag flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
 
-                # Push frontend
-                docker push chandu0303/frontend-app:${IMAGE_TAG}
-                docker tag chandu0303/frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
-                docker push chandu0303/frontend-app:latest
+    docker push chandu0303/flask-backend:${IMAGE_TAG}
+    docker push chandu0303/flask-backend:latest
+
+    docker tag frontend-app:${IMAGE_TAG} chandu0303/frontend-app:${IMAGE_TAG}
+    docker tag frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
+
+    docker push chandu0303/frontend-app:${IMAGE_TAG}
+    docker push chandu0303/frontend-app:latest
 
                 echo "✅ Pushed to DockerHub successfully!"
             '''

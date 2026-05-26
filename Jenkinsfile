@@ -57,30 +57,31 @@ pipeline {
             }
         }
 
-       // ─── Stage 5: Push to DockerHub ──────────────────
-        stage('Push to DockerHub') {
-            steps {
-                echo '📤 Pushing images to DockerHub...'
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-credentials',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    sh '''
-                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+     stage('Push to DockerHub') {
+    steps {
+        echo '📤 Pushing images to DockerHub...'
 
-                     //   # Push backend
-                        docker push chandu0303/flask-backend:${IMAGE_TAG}
-                        docker tag  chandu0303/flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
-                        docker push chandu0303/flask-backend:latest
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-credentials',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
 
-                       // # Push frontend
-                        docker push chandu0303/frontend-app:${IMAGE_TAG}
-                        docker tag  chandu0303/frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
-                        docker push chandu0303/frontend-app:latest
+            sh '''
+                echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-                        echo "✅ Pushed to DockerHub successfully!"
-                    '''
+                # Push backend
+                docker push chandu0303/flask-backend:${IMAGE_TAG}
+                docker tag chandu0303/flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
+                docker push chandu0303/flask-backend:latest
+
+                # Push frontend
+                docker push chandu0303/frontend-app:${IMAGE_TAG}
+                docker tag chandu0303/frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
+                docker push chandu0303/frontend-app:latest
+
+                echo "✅ Pushed to DockerHub successfully!"
+            '''
                 }
             }
         }

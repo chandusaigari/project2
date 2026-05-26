@@ -8,7 +8,7 @@ pipeline {
 
     stages {
 
-        # ─── Stage 1: Clone Repo ─────────────────────────
+        //# ─── Stage 1: Clone Repo ─────────────────────────
         stage('Clone') {
             steps {
                 echo '📥 Cloning repository...'
@@ -16,7 +16,7 @@ pipeline {
             }
         }
 
-       # // ─── Stage 2: Build with Docker Compose ──────────
+       // ─── Stage 2: Build with Docker Compose ──────────
         stage('Build') {
             steps {
                 echo '🔨 Building images with docker compose...'
@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        #// ─── Stage 3: Start All Services ─────────────────
+        // ─── Stage 3: Start All Services ─────────────────
         stage('Deploy') {
             steps {
                 echo '🚀 Starting all containers...'
@@ -33,12 +33,12 @@ pipeline {
             }
         }
 
-        #// ─── Stage 4: Test ───────────────────────────────
+        // ─── Stage 4: Test ───────────────────────────────
         stage('Test') {
             steps {
                 echo '🧪 Waiting for services to be ready...'
 
-         #       // Wait for MySQL to be healthy and backend to start
+                // Wait for MySQL to be healthy and backend to start
                 sh '''
                     echo "Waiting for MySQL..."
                     sleep 45
@@ -57,7 +57,7 @@ pipeline {
             }
         }
 
-       # // ─── Stage 5: Push to DockerHub ──────────────────
+       // ─── Stage 5: Push to DockerHub ──────────────────
         stage('Push to DockerHub') {
             steps {
                 echo '📤 Pushing images to DockerHub...'
@@ -69,12 +69,12 @@ pipeline {
                     sh '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-                        # Push backend
+                     //   # Push backend
                         docker push chandu0303/flask-backend:${IMAGE_TAG}
                         docker tag  chandu0303/flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
                         docker push chandu0303/flask-backend:latest
 
-                        # Push frontend
+                       // # Push frontend
                         docker push chandu0303/frontend-app:${IMAGE_TAG}
                         docker tag  chandu0303/frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
                         docker push chandu0303/frontend-app:latest
@@ -86,7 +86,7 @@ pipeline {
         }
     }
 
-   # // ─── Cleanup ─────────────────────────────────────────
+    // ─── Cleanup ─────────────────────────────────────────
     post {
         always {
             echo '🧹 Cleaning up...'

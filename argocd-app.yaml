@@ -5,17 +5,18 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/chandusaigari/project2.git
     targetRevision: main
-    path: .   # root folder (your YAMLs)
-
+    path: kubernetes  # Dedicated folder
+    directory:
+      recurse: true   # Include subdirectories
   destination:
     server: https://kubernetes.default.svc
     namespace: e-ns
-
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true   

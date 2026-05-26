@@ -19,8 +19,6 @@ services:
       - calc_network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pdb"]
-      #                                                                      ↑
-      #                                                    matches MYSQL_ROOT_PASSWORD: db
       interval: 10s
       timeout: 5s
       retries: 10
@@ -28,13 +26,13 @@ services:
 
   backend:
     build: ./backend
-    container_name: project2-backend:latest
+    container_name: project2-backend
     restart: on-failure
     environment:
       DB_HOST: mysql
-      DB_USER: db          # ← matches MYSQL_USER: db
-      DB_PASSWORD: db      # ← matches MYSQL_PASSWORD: db
-      DB_NAME: db          # ← matches MYSQL_DATABASE: db
+      DB_USER: db
+      DB_PASSWORD: db
+      DB_NAME: db
     ports:
       - "5000:5000"
     depends_on:
@@ -47,7 +45,7 @@ services:
 
   frontend:
     build: ./frontend
-    container_name: project2-frontend:latest
+    container_name: project2-frontend
     restart: always
     ports:
       - "80:80"
@@ -57,8 +55,8 @@ services:
       - calc_network
 
 volumes:
- mydata:
-  
+  mydata:
+
 networks:
   calc_network:
     driver: bridge

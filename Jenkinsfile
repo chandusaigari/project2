@@ -57,7 +57,8 @@ pipeline {
             }
         }
 
-     stage('Push to DockerHub') {
+     
+   stage('Push to DockerHub') {
     steps {
         echo '📤 Pushing images to DockerHub...'
 
@@ -70,17 +71,17 @@ pipeline {
             sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-               docker tag flask-backend:${IMAGE_TAG} chandu0303/flask-backend:${IMAGE_TAG}
-    docker tag flask-backend:${IMAGE_TAG} chandu0303/flask-backend:latest
+                docker tag project2-backend:latest chandu0303/flask-backend:${IMAGE_TAG}
+                docker tag project2-backend:latest chandu0303/flask-backend:latest
 
-    docker push chandu0303/flask-backend:${IMAGE_TAG}
-    docker push chandu0303/flask-backend:latest
+                docker push chandu0303/flask-backend:${IMAGE_TAG}
+                docker push chandu0303/flask-backend:latest
 
-    docker tag frontend-app:${IMAGE_TAG} chandu0303/frontend-app:${IMAGE_TAG}
-    docker tag frontend-app:${IMAGE_TAG} chandu0303/frontend-app:latest
+                docker tag project2-frontend:latest chandu0303/frontend-app:${IMAGE_TAG}
+                docker tag project2-frontend:latest chandu0303/frontend-app:latest
 
-    docker push chandu0303/frontend-app:${IMAGE_TAG}
-    docker push chandu0303/frontend-app:latest
+                docker push chandu0303/frontend-app:${IMAGE_TAG}
+                docker push chandu0303/frontend-app:latest
 
                 echo "✅ Pushed to DockerHub successfully!"
             '''

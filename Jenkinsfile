@@ -90,20 +90,42 @@ pipeline {
         }
     }
 
-    // ─── Cleanup ─────────────────────────────────────────
     post {
-        always {
-            echo '🧹 Cleaning up...'
-            sh '''
-                docker compose down -v || true
-                docker logout || true
-            '''
-        }
-        success {
-            echo '✅ Pipeline completed successfully!'
-        }
-        failure {
-            echo '❌ Pipeline failed!'
-        }
+    always {
+        echo '🧹 Cleaning up...'
+        sh '''
+            docker compose down -v || true
+            docker logout || true
+        '''
+    }
+
+    success {
+        echo '✅ Pipeline completed successfully!'
+
+        mail to: 'chandusaigari6@gmail.com',
+        subject: "SUCCESS: Jenkins Build ${env.BUILD_NUMBER}",
+        body: """
+Pipeline completed successfully.
+
+Job Name: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+"""
+    }
+
+    failure {
+        echo '❌ Pipeline failed!'
+
+        mail to: 'chandusaigari6@gmail.com',
+        subject: "FAILED: Jenkins Build ${env.BUILD_NUMBER}",
+        body: """
+Pipeline failed.
+
+Job Name: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+Build URL: ${env.BUILD_URL}
+"""
     }
 }
+    }
+

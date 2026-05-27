@@ -4,7 +4,7 @@ metadata:
   name: flask-backend-deployment
   namespace: e-ns 
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: flask-backend

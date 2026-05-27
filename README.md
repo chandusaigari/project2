@@ -1,71 +1,119 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>DevOps Calculator Project</title>
 
 <style>
+    :root {
+        --bg: #0b1220;
+        --card: #111827;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --accent: #3b82f6;
+        --border: #1f2937;
+    }
+
     body {
-        font-family: Arial, sans-serif;
+        font-family: "Segoe UI", Arial, sans-serif;
         margin: 0;
-        background: #f5f7fb;
-        color: #111;
+        background: linear-gradient(180deg, #0b1220, #0f172a);
+        color: var(--text);
+        line-height: 1.7;
     }
 
     header {
-        background: #0f172a;
-        color: white;
-        padding: 20px;
+        background: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 28px;
         text-align: center;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: 0.5px;
     }
 
     .container {
-        max-width: 1100px;
+        max-width: 1150px;
         margin: auto;
-        padding: 25px;
-        background: white;
+        padding: 30px;
     }
 
     section {
-        margin-bottom: 40px;
+        background: rgba(17, 24, 39, 0.7);
+        border: 1px solid var(--border);
+        padding: 22px;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     }
 
     h1, h2, h3 {
-        color: #0f172a;
+        color: var(--text);
+        margin-top: 0;
     }
 
     h2 {
-        border-left: 5px solid #2563eb;
-        padding-left: 10px;
+        border-left: 4px solid var(--accent);
+        padding-left: 12px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: var(--muted);
     }
 
     pre {
-        background: #111827;
-        color: #e5e7eb;
-        padding: 15px;
-        border-radius: 8px;
+        background: #0a0f1c;
+        color: #d1d5db;
+        padding: 16px;
+        border-radius: 10px;
         overflow-x: auto;
+        border: 1px solid var(--border);
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
     table, th, td {
-        border: 1px solid #ddd;
+        border: 1px solid var(--border);
+    }
+
+    th {
+        background: #1f2937;
+        color: white;
     }
 
     th, td {
-        padding: 10px;
+        padding: 12px;
         text-align: left;
+    }
+
+    tr:hover {
+        background: rgba(59, 130, 246, 0.08);
     }
 
     img {
         max-width: 100%;
-        margin-top: 10px;
-        border-radius: 6px;
-        border: 1px solid #ddd;
+        margin-top: 12px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    section:hover {
+        border-color: rgba(59, 130, 246, 0.4);
+        transition: 0.2s ease;
     }
 </style>
 </head>
@@ -75,6 +123,8 @@
 <header>
     <h1>Project overview</h1>
 </header>
+
+
 
 <div class="container">
 

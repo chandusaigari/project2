@@ -94,7 +94,7 @@ Docker is used to containerize backend, frontend, and database services. After i
 git clone https://github.com/chandusaigari/project2.git
 </pre>
 
-<img src="images/jenkins.png" alt="Jenkins Setup">
+<img src="images/clone.png" alt="Jenkins Setup">
 
 <h2>Backend Dockerfile</h2>
 
@@ -118,7 +118,7 @@ Frontend Dockerfile is used to containerize the static web application. It serve
 Jenkinsfile defines the complete CI/CD pipeline. It automates code checkout from GitHub, builds the application, runs tests, creates Docker images, pushes them to Docker Hub, and triggers deployment to Kubernetes via Argo CD. It also sends email notifications for success or failure.
 </p>
 
-<img src="images/jenkins-pipeline.png" alt="Jenkins CI/CD Pipeline">
+<img src="images/jenkinsfile.png" alt="Jenkins CI/CD Pipeline">
 
 <h2>Docker Compose (Multi-Container Setup)</h2>
 
@@ -134,7 +134,7 @@ Docker Compose is used to run the full application locally with multiple contain
 Kubernetes is used to deploy and manage the multi-container application (frontend, backend, MySQL). It ensures scalability, high availability, and service communication inside the cluster.
 </p>
 
-<img src="images/k8s-architecture.png">
+<img src="images/k8s.png">
 
 <h2>Argo CD Application (GitOps CD)</h2>
 
@@ -150,7 +150,6 @@ This manifest defines the Argo CD application that continuously syncs Kubernetes
 GitHub Webhook triggers Jenkins automatically whenever code is pushed or any change is made in the repository. This starts the CI/CD pipeline without manual intervention.
 </p>
 
-<img src="images/github-webhook.png">
 
 <h2>Email Notifications</h2>
 
@@ -159,7 +158,7 @@ After every Jenkins pipeline run, an email notification is sent automatically ba
 If the build and deployment are successful, a success email is sent. If any stage fails, a failure email is sent.
 </p>
 
-<img src="images/email-success-failure.png">
+<img src="images/email.png">
 
 <h2>Docker Hub Images</h2>
 
@@ -167,7 +166,7 @@ If the build and deployment are successful, a success email is sent. If any stag
 After a successful Jenkins pipeline execution, the Docker images are automatically pushed to Docker Hub registry.
 </p>
 
-<img src="images/dockerhub-images.png">
+<img src="images/dockerhub.png">
 
 <h2>Kind Cluster Setup (Kubernetes)</h2>
 
@@ -189,7 +188,7 @@ kubectl apply -f ns.yaml
 kubectl get namespaces
 </pre>
 
-<img src="images/namespace-created.png">
+<img src="images/namespace.png">
 
 <h2>Argo CD Setup</h2>
 
@@ -200,23 +199,34 @@ kubectl get pods -n argocd
 kubectl get pods -n argocd -w
 </pre>
 
-<img src="images/argocd-pods-running.png">
+<img src="images/argocdrun.png">
 
 <h2>Port Forwarding</h2>
 
 <pre>
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-https://localhost:8080
+kubectl port-forward svc/argocd-server -n argocd 8081:443
+https://localhost:8081
 
 kubectl port-forward svc/backend-service -n calculator 5000:5000
 http://localhost:5000
 
-kubectl port-forward svc/frontend-service -n calculator 80:80
-http://localhost:80
+kubectl port-forward svc/frontend-service -n calculator 3000:80
+http://localhost:3000
 
 kubectl port-forward svc/mysql-service -n calculator 3306:3306
 localhost:3306
 </pre>
+<p>you can check application running by opening localhost:3000 in browser</p>
+<img src="images/check.png">
+<img src="images/all portforward.png">
+
+<h2>before and after changes in argocd </h2>
+<pre>you can see here below is only one replicaset for backend service</pre>
+<img src="images/replica1.png">
+<pre>But after changes in github replicaset there are 3 replicas triggered by argocd</pre>
+<img src="images/replica3.png">
+
+
 
 <h2>MySQL Data Verification</h2>
 
@@ -229,4 +239,4 @@ SHOW TABLES;
 SELECT * FROM calculations;
 </pre>
 
-<img src="images/mysql-data-check.png">
+<img src="images/mysqldatacheck.png">

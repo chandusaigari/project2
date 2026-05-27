@@ -1,5 +1,11 @@
-<h1>Project overview</h1>
+<h1>Project Overview</h1>
 
+<p>
+  Project Explanation Video: 
+  <a href="https://your-video-link-here.com" target="_blank">
+    Click Here
+  </a>
+</p>
 <p>
 This project is a full-stack Calculator Web Application developed using Python, HTML, CSS, JavaScript, and MySQL. The application is integrated with a complete DevOps CI/CD pipeline using GitHub, Jenkins, Docker, Docker Hub, Kubernetes, and Argo CD.
 </p>
@@ -12,7 +18,7 @@ Whenever the developer pushes code to GitHub, a webhook automatically triggers t
 The pipeline also sends automated email notifications for successful or failed builds and deployments.
 </p>
 
-<h2>Architecture</h2>
+<h2>WORKFLOW</h2>
 
 <img src="images/architecture.png" alt="Architecture Workflow" width="100%">
 

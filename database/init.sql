@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS calculations (
     id INT AUTO_INCREMENT PRIMARY KEY,
     operand1 FLOAT NOT NULL,
     operand2 FLOAT NOT NULL,
-    operator VARCHAR(10) NOT NULL,
+    operator VARCHAR(10) NOT NULL, 
     result FLOAT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

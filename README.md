@@ -75,6 +75,7 @@ project/
 </pre>
 
 <h2>Local Setup</h2>
+<p><b> For clear view, please click images</b></p>
 
 <h3>Jenkins Setup</h3>
 

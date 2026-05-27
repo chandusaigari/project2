@@ -1,7 +1,7 @@
 <h1>Project Overview</h1>
 
 <p>
-  Project Explanation Video: 
+ <b>Project Explanation Video:</b> 
   <a href="https://your-video-link-here.com" target="_blank">
     Click Here
   </a>

@@ -1,11 +1,11 @@
 <h1>Project Overview</h1>
 
-<p>
-## <b>Project Explanation Video:</b> 
-  ## <a href="https://your-video-link-here.com" target="_blank">
+<!---<p>
+ <b>Project Explanation Video:</b> 
+   <a href="https://your-video-link-here.com" target="_blank">
     Click Here
   </a>
-</p>
+</p>--->
 <p>
 This project is a full-stack Calculator Web Application developed using Python, HTML, CSS, JavaScript, and MySQL. The application is integrated with a complete DevOps CI/CD pipeline using GitHub, Jenkins, Docker, Docker Hub, Kubernetes, and Argo CD.
 </p>

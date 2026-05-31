@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_USERNAME = 'chandu0303'
         IMAGE_TAG          = "${BUILD_NUMBER}"
-    }
+    } 
 
     stages {
 
